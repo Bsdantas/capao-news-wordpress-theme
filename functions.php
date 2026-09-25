@@ -192,10 +192,12 @@ function capao_news_menu_fallback(): void
 
 function capao_news_create_static_pages(): void
 {
+    $quem_somos_content = capao_news_about_content();
+
     $pages = [
         'quem-somos' => [
             'title'   => 'Quem Somos',
-            'content' => '<p>O Capão News nasceu para dar voz ao bairro e para contar a história da região com jornalismo vivo, atento ao cotidiano, às pessoas e às demandas reais da comunidade.</p><p>Somos um veículo de comunicação comunitária que coloca a vida local no centro da pauta: mobilidade, infraestrutura, cultura, empreendedorismo, educação, esporte, cidadania e as histórias que fazem o Capão Redondo e seus bairros ganharem visibilidade.</p><p>Nosso compromisso é unir informação, denúncia construtiva, memória e protagonismo da população, trazendo uma cobertura que fala de perto com quem vive, trabalha e transforma a região todos os dias.</p>',
+            'content' => $quem_somos_content,
         ],
         'nossa-equipe' => [
             'title'   => 'Nossa Equipe',
@@ -207,6 +209,13 @@ function capao_news_create_static_pages(): void
         $existing_page = get_page_by_path($slug, OBJECT, 'page');
 
         if ($existing_page) {
+            if ($slug === 'quem-somos' && strpos((string) $existing_page->post_content, 'O Capão News nasceu para dar voz ao bairro') !== false) {
+                wp_update_post([
+                    'ID'           => $existing_page->ID,
+                    'post_content' => $page_data['content'],
+                ]);
+            }
+
             continue;
         }
 
@@ -222,3 +231,8 @@ function capao_news_create_static_pages(): void
 }
 add_action('after_switch_theme', 'capao_news_create_static_pages');
 add_action('init', 'capao_news_create_static_pages');
+
+function capao_news_about_content(): string
+{
+    return '<h2><strong>Jornalismo feito daqui, para quem vive aqui.</strong></h2><p>O Capão News é um veículo de comunicação independente, criado pelo jornalista Nailson Costa para informar quem vive, trabalha e constrói todos os dias o Capão Redondo e a Zona Sul de São Paulo.</p><p>Produzimos jornalismo da ponte pra cá com responsabilidade, linguagem acessível e compromisso com quem vive o território.</p><p>Noticiamos os problemas, cobramos soluções, fiscalizamos o poder público e também mostramos as histórias, os negócios, a cultura e as pessoas que fazem a quebrada acontecer.</p><p>Com mais de 200 mil seguidores nas redes sociais e milhões de visualizações todos os meses, trabalhamos para fortalecer uma comunidade mais informada, crítica e conectada com o próprio lugar onde mora.</p><p>Mas números são apenas parte da nossa história.</p><p>Nossa principal força está na confiança construída com quem está do lado de cá da ponte.</p><p><strong>Capão News. Notícias da Ponte pra Cá.</strong></p>';
+}

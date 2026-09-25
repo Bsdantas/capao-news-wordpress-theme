@@ -50,7 +50,11 @@ get_header();
             </header>
 
             <div class="prose prose-lg mt-8 max-w-none font-serif leading-relaxed">
-                <?php the_content(); ?>
+                <?php if (is_page('quem-somos')) : ?>
+                    <?php echo wp_kses_post(capao_news_about_content()); ?>
+                <?php else : ?>
+                    <?php the_content(); ?>
+                <?php endif; ?>
             </div>
         </article>
     <?php endif; ?>

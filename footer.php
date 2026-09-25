@@ -12,7 +12,9 @@
         <div class="footer-top">
             <div class="footer-brand-block">
                 <div class="footer-logo-wrap" aria-label="Capão News">
-                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/logo-capao-news.png'); ?>" alt="Capão News" class="footer-brand-image" />
+                    <a href="<?php echo esc_url(home_url('/')); ?>" aria-label="Capão News - início">
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/Footer_Site.png'); ?>" alt="Capão News" class="footer-brand-image" />
+                    </a>
                 </div>
                 <p class="footer-tagline"><?php esc_html_e('Jornalismo comunitário feito por quem vive a zona sul de São Paulo.', 'capao-news'); ?></p>
             </div>

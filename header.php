@@ -38,22 +38,28 @@
             </a>
         <?php endif; ?>
         </div>
-        <div class="header-actions"><a href="#apoie"><?php esc_html_e('Apoie o jornalismo local', 'capao-news'); ?></a></div>
     </div>
 
     <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu-panel">
         <span class="screen-reader-text"><?php esc_html_e('Abrir menu', 'capao-news'); ?></span><span class="mobile-menu-icon" aria-hidden="true"><i></i><i></i><i></i></span>
     </button>
     <nav id="site-menu-panel" class="site-navigation" aria-label="<?php esc_attr_e('Navegação principal', 'capao-news'); ?>">
-        <?php
-        wp_nav_menu([
-            'theme_location' => 'primary',
-            'container'      => false,
-            'fallback_cb'    => 'capao_news_menu_fallback',
-            'menu_class'     => 'site-menu',
-            'depth'          => 2,
-        ]);
-        ?>
+        <div class="site-navigation-inner">
+            <?php
+            wp_nav_menu([
+                'theme_location' => 'primary',
+                'container'      => false,
+                'fallback_cb'    => 'capao_news_menu_fallback',
+                'menu_class'     => 'site-menu',
+                'depth'          => 2,
+            ]);
+            ?>
+            <form class="site-search" role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
+                <label class="screen-reader-text" for="site-search-input"><?php esc_html_e('Buscar notícias', 'capao-news'); ?></label>
+                <input id="site-search-input" type="search" name="s" value="<?php echo esc_attr(get_search_query()); ?>" placeholder="<?php esc_attr_e('Buscar', 'capao-news'); ?>">
+                <button type="submit" aria-label="<?php esc_attr_e('Buscar notícias', 'capao-news'); ?>">⌕</button>
+            </form>
+        </div>
     </nav>
 </header>
 
