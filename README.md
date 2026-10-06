@@ -2,6 +2,8 @@
 
 Tema WordPress editorial criado para um portal de notícias comunitário do Capão Redondo e da Zona Sul de São Paulo.
 
+Site oficial: [www.capaonews.com](https://www.capaonews.com)
+
 O projeto foi desenvolvido para a página [@capaonews](https://www.instagram.com/capaonews/) e tem como proposta transformar o conteúdo do Capão News em uma experiência digital organizada, responsiva e fácil de administrar pelo painel do WordPress.
 
 > Projeto desenvolvido como parte do Projeto de Extensão IV da [Faculdade Descomplica](https://descomplica.com.br/), no curso de Análise e Desenvolvimento de Sistemas.
@@ -143,6 +145,7 @@ Este trabalho faz parte do **Projeto de Extensão IV** da Faculdade Descomplica,
 ## Créditos
 
 - **Projeto:** Capão News
+- **Site:** [www.capaonews.com](https://www.capaonews.com)
 - **Instagram:** [@capaonews](https://www.instagram.com/capaonews/)
 - **Instituição:** Faculdade Descomplica
 - **Curso:** Análise e Desenvolvimento de Sistemas
