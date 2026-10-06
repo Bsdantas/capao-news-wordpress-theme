@@ -26,7 +26,7 @@
             </div>
         <?php elseif (has_custom_header() && get_header_image()) : ?>
             <a href="<?php echo esc_url(home_url('/')); ?>" aria-label="<?php esc_attr_e('Capão News - início', 'capao-news'); ?>">
-                <img class="h-full w-full object-cover object-center" src="<?php echo esc_url(get_header_image()); ?>" alt="<?php bloginfo('name'); ?>">
+                <img class="header-banner-image" src="<?php echo esc_url(get_header_image()); ?>" alt="<?php bloginfo('name'); ?>">
             </a>
         <?php else : ?>
             <a class="brand-link" href="<?php echo esc_url(home_url('/')); ?>" aria-label="<?php esc_attr_e('Capão News - início', 'capao-news'); ?>">
@@ -38,13 +38,25 @@
             </a>
         <?php endif; ?>
         </div>
+        <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu-drawer" data-open-label="<?php esc_attr_e('Abrir menu', 'capao-news'); ?>" data-close-label="<?php esc_attr_e('Fechar menu', 'capao-news'); ?>">
+            <span class="screen-reader-text"><?php esc_html_e('Abrir menu', 'capao-news'); ?></span><span class="mobile-menu-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+        </button>
     </div>
 
-    <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu-panel">
-        <span class="screen-reader-text"><?php esc_html_e('Abrir menu', 'capao-news'); ?></span><span class="mobile-menu-icon" aria-hidden="true"><i></i><i></i><i></i></span>
-    </button>
+    <button class="menu-backdrop" type="button" tabindex="-1" aria-label="<?php esc_attr_e('Fechar menu', 'capao-news'); ?>" hidden></button>
+    <div id="site-menu-drawer" class="menu-drawer" data-expand-label="<?php esc_attr_e('Expandir submenu', 'capao-news'); ?>" data-collapse-label="<?php esc_attr_e('Recolher submenu', 'capao-news'); ?>">
+        <div class="menu-drawer-surface">
+            <div class="menu-drawer-heading">
+                <h2 id="mobile-menu-title"><?php esc_html_e('Menu', 'capao-news'); ?></h2>
+                <button class="mobile-menu-close" type="button" aria-label="<?php esc_attr_e('Fechar menu', 'capao-news'); ?>"><span aria-hidden="true">&times;</span></button>
+            </div>
     <nav id="site-menu-panel" class="site-navigation" aria-label="<?php esc_attr_e('Navegação principal', 'capao-news'); ?>">
         <div class="site-navigation-inner">
+            <form class="site-search" role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
+                <label class="screen-reader-text" for="site-search-input"><?php esc_html_e('Buscar notícias', 'capao-news'); ?></label>
+                <input id="site-search-input" type="search" name="s" value="<?php echo esc_attr(get_search_query()); ?>" placeholder="<?php esc_attr_e('Buscar', 'capao-news'); ?>">
+                <button type="submit" aria-label="<?php esc_attr_e('Buscar notícias', 'capao-news'); ?>">⌕</button>
+            </form>
             <?php
             wp_nav_menu([
                 'theme_location' => 'primary',
@@ -54,13 +66,23 @@
                 'depth'          => 2,
             ]);
             ?>
-            <form class="site-search" role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
-                <label class="screen-reader-text" for="site-search-input"><?php esc_html_e('Buscar notícias', 'capao-news'); ?></label>
-                <input id="site-search-input" type="search" name="s" value="<?php echo esc_attr(get_search_query()); ?>" placeholder="<?php esc_attr_e('Buscar', 'capao-news'); ?>">
-                <button type="submit" aria-label="<?php esc_attr_e('Buscar notícias', 'capao-news'); ?>">⌕</button>
-            </form>
+
         </div>
     </nav>
+        </div>
+    </div>
 </header>
+
+<div class="desktop-compact-header" hidden inert>
+    <div class="desktop-compact-inner">
+        <div class="desktop-compact-brand"></div>
+        <nav class="desktop-compact-editorias" aria-label="<?php esc_attr_e('Editorias', 'capao-news'); ?>"></nav>
+        <details class="desktop-compact-menu">
+            <summary><?php esc_html_e('Menu completo', 'capao-news'); ?></summary>
+            <nav aria-label="<?php esc_attr_e('Menu completo', 'capao-news'); ?>"></nav>
+        </details>
+        <div class="desktop-compact-search"></div>
+    </div>
+</div>
 
 <main id="conteudo" class="site-main">

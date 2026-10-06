@@ -176,14 +176,19 @@ function capao_news_menu_fallback(): void
         'Bairros'            => home_url('/bairros/'),
     ];
 
-    echo '<ul class="flex flex-wrap items-center justify-center gap-2 lg:gap-3">';
+    echo '<ul class="site-menu flex flex-wrap items-center justify-center gap-2 lg:gap-3">';
     foreach ($categories as $label => $target) {
         $category = is_string($target) ? get_category_by_slug($target) : null;
         $url = $category ? get_category_link($category->term_id) : $target;
+        $current = ($category && is_category($category->term_id))
+            || ($target === home_url('/') && is_front_page())
+            || ($target === home_url('/bairros/') && is_page('bairros'));
 
         printf(
-            '<li><a class="whitespace-nowrap rounded-full px-4 py-2 transition hover:bg-[#6865a8]/10 hover:text-[#4a154b]" href="%s">%s</a></li>',
+            '<li class="%s"><a class="whitespace-nowrap rounded-full px-4 py-2 transition hover:bg-[#6865a8]/10 hover:text-[#4a154b]" href="%s"%s>%s</a></li>',
+            $current ? 'current-menu-item' : '',
             esc_url($url),
+            $current ? ' aria-current="page"' : '',
             esc_html($label)
         );
     }

@@ -46,10 +46,10 @@ get_header();
                 <p class="text-[10px] font-bold uppercase tracking-[.2em] text-[#4a154b]">
                     <?php esc_html_e('Capão News', 'capao-news'); ?>
                 </p>
-                <h1 class="mt-3 font-serif text-4xl font-black leading-tight sm:text-6xl"><?php the_title(); ?></h1>
+                <h1 class="mt-3 text-4xl font-black leading-tight sm:text-6xl"><?php the_title(); ?></h1>
             </header>
 
-            <div class="prose prose-lg mt-8 max-w-none font-serif leading-relaxed">
+            <div class="prose prose-lg mt-8 max-w-none leading-relaxed">
                 <?php if (is_page('quem-somos')) : ?>
                     <?php echo wp_kses_post(capao_news_about_content()); ?>
                 <?php else : ?>
