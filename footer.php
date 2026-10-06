@@ -41,7 +41,7 @@
                 <a href="https://wa.me/5511960361360?text=Ol%C3%A1%2C%20quero%20falar%20com%20a%20reda%C3%A7%C3%A3o%20do%20Cap%C3%A3o%20News." target="_blank" rel="noopener"><?php esc_html_e('Entrar em contato', 'capao-news'); ?> &rarr;</a>
             </div>
         </div>
-        <div class="footer-bottom"><span>&copy; <?php echo esc_html(wp_date('Y')); ?> Capão News</span><span><?php esc_html_e('Desenvolvido por Bruno Dantas', 'capao-news'); ?></span></div>
+        <div class="footer-bottom"><span>&copy; <?php echo esc_html(wp_date('Y')); ?> Capão News</span><span><?php esc_html_e('Desenvolvido por', 'capao-news'); ?> <a href="<?php echo esc_url('https://v0-less-portfolio-page.vercel.app/'); ?>" target="_blank" rel="noopener noreferrer">Bruno Dantas</a></span></div>
     </div>
 </footer>
 

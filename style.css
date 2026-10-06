@@ -187,6 +187,9 @@ html[data-font-scale="2"] .single-content { font-size: 24px; }
 .site-footer .footer-cta > a { background: #fff; color: var(--accent); display: inline-block; font-size: 12px; font-weight: 800; padding: 12px 14px; transition: background .2s ease; }
 .site-footer .footer-cta > a:hover { background: #eeeefa; text-decoration: underline; text-underline-offset: 3px; }
 .site-footer .footer-bottom { border-top: 1px solid rgba(255,255,255,.3); color: #fff; display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; font-size: 10px; letter-spacing: .06em; line-height: 1.6; padding-top: 14px; text-transform: uppercase; }
+.site-footer .footer-bottom a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.site-footer .footer-bottom a:hover { text-decoration-thickness: 2px; }
+.site-footer .footer-bottom a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
 @media (max-width: 1023px) {
     .site-footer .footer-top { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 32px; }
 }
