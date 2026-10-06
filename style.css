@@ -348,6 +348,65 @@ html[data-font-scale="2"] .single-content { font-size: 24px; }
 }
 
 /* Compact scrolling header is exclusively a desktop component. */
+.guia-archive-header { max-width: 760px; margin-bottom: 24px; }
+.guia-archive-header h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 900; line-height: 1.1; margin: 10px 0 16px; }
+.guia-archive-header > p:not(.eyebrow), .guia-category-description { color: var(--muted); font-size: 16px; line-height: 1.65; }
+.guia-category-nav { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0; }
+.guia-category-nav a, .guia-pagination .page-numbers { border: 1px solid var(--line); border-radius: 6px; display: inline-flex; align-items: center; min-height: 44px; padding: 10px 16px; font-size: 14px; text-decoration: none; }
+.guia-category-nav a[aria-current], .guia-pagination .current { background: var(--accent); border-color: var(--accent); color: #fff; }
+.guia-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.guia-card { min-width: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff; }
+.guia-card-image { display: block; aspect-ratio: 1.5; }
+.guia-card-image img { width: 100%; height: 100%; object-fit: cover; }
+.guia-card-body { padding: 20px; }
+.guia-card .eyebrow { margin: 0 0 10px; }
+.guia-card h2 { font-size: 22px; font-weight: 800; line-height: 1.25; margin: 0 0 12px; }
+.guia-card h2 a { text-decoration: none; }
+.guia-card-body > p:not(.eyebrow) { font-size: 14px; line-height: 1.6; margin: 12px 0 0; }
+.guia-card-rating, .guia-comment-stars { color: var(--accent); font-weight: 700; }
+.guia-pagination { margin-top: 24px; }
+.guia-pagination .nav-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.guia-pagination .screen-reader-text, .guia-reviews .screen-reader-text, .guia-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.guia-practical { background: var(--soft); border: 1px solid var(--line); border-radius: 12px; padding: 24px; margin: 32px 0; }
+.single-content .guia-practical h2 { font-size: 24px; line-height: 1.3; margin: 0 0 20px; }
+.guia-practical dl { margin: 0; }
+.guia-practical dl > div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); gap: 16px; border-top: 1px solid var(--line); padding: 12px 0; font-size: 15px; line-height: 1.6; }
+.guia-practical dt { font-weight: 700; }
+.guia-practical dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.guia-practical a { color: var(--accent); text-underline-offset: 3px; }
+.guia-reviews { max-width: 864px; margin: 0 auto 40px; border-top: 1px solid var(--line); padding-top: 28px; overflow-wrap: anywhere; }
+.guia-reviews h2, .guia-reviews h3 { font-size: 26px; font-weight: 800; line-height: 1.3; margin: 0 0 16px; }
+.guia-rating-summary { display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: 16px; }
+.guia-comment-list { list-style: none; margin: 24px 0; padding: 0; }
+.guia-comment { border: 1px solid var(--line); border-radius: 8px; padding: 20px; margin-bottom: 16px; }
+.guia-comment header { display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between; font-size: 15px; }
+.guia-comment time { color: var(--muted); font-size: 13px; }
+.guia-comment-text { font-size: 16px; line-height: 1.65; }
+.guia-comment-text p { margin: 12px 0 0; }
+.guia-reviews .comment-form > p, .guia-review-notice { font-size: 14px; line-height: 1.6; }
+.guia-reviews .comment-form label { display: block; font-weight: 600; margin-bottom: 6px; }
+.guia-reviews .comment-form input:not([type=radio]):not([type=checkbox]):not([type=submit]), .guia-reviews textarea { border: 1px solid var(--line); border-radius: 6px; background: #fff; color: var(--ink); font-size: 16px; min-height: 48px; padding: 12px; width: 100%; max-width: 100%; }
+.guia-reviews .comment-form p { margin: 16px 0; }
+.guia-reviews .comment-form-cookies-consent { display: flex; align-items: flex-start; gap: 10px; }
+.guia-reviews .comment-form-cookies-consent input { flex: 0 0 20px; width: 20px; height: 20px; margin-top: 3px; }
+.guia-reviews .comment-form-cookies-consent label { font-weight: 400; }
+.guia-reviews .submit { background: var(--accent); border: 0; border-radius: 6px; color: #fff; cursor: pointer; font-size: 15px; font-weight: 700; min-height: 48px; padding: 12px 20px; }
+.guia-rating-input { border: 0; padding: 0; margin: 20px 0; min-width: 0; }
+.guia-rating-input legend { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+.guia-rating-options { display: flex; flex-wrap: wrap; gap: 8px; }
+.guia-reviews .guia-rating-options label { display: flex; align-items: center; gap: 6px; border: 1px solid var(--line); border-radius: 6px; min-height: 48px; margin: 0; padding: 10px; cursor: pointer; color: var(--accent); font-size: 18px; }
+.guia-rating-options input { width: 18px; height: 18px; accent-color: var(--accent); }
+.guia-rating-options label:has(input:checked) { background: var(--soft); border-color: var(--accent); }
+.guia-archive a:hover, .guia-reviews a:hover { color: var(--accent); text-decoration: underline; }
+.guia-archive a[aria-current]:hover { color: #fff; }
+.guia-archive a:focus-visible, .guia-reviews :where(a, input, textarea):focus-visible, .guia-practical a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (max-width: 1023px) { .guia-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px) {
+    .guia-cards { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+    .guia-practical { padding: 18px; }
+    .guia-practical dl > div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+    .guia-reviews h2, .guia-reviews h3 { font-size: 23px; }
+}
 .desktop-compact-header { display: none; }
 @media (min-width: 1024px) {
     .desktop-compact-header:not([hidden]) { background: #fffdf9; border-bottom: 1px solid var(--line); box-shadow: 0 3px 14px rgba(0,0,0,.08); display: block; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; }

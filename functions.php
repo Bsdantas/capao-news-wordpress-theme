@@ -164,6 +164,64 @@ function capao_news_reading_time(): string
     return sprintf('%d min de leitura', $minutes);
 }
 
+function capao_news_guide_category_id(): int
+{
+    $stored = (int) get_option('capao_guia_category_id');
+    if ($stored && get_term($stored, 'category') instanceof WP_Term) {
+        return $stored;
+    }
+    $category = get_term_by('slug', 'guia-capao', 'category');
+    return $category ? (int) $category->term_id : 0;
+}
+
+function capao_news_is_guide_category($category): bool
+{
+    if (!($category instanceof WP_Term)) {
+        return false;
+    }
+    $root = capao_news_guide_category_id();
+    return $root && ((int) $category->term_id === $root || in_array($root, array_map('intval', get_ancestors($category->term_id, 'category')), true));
+}
+
+function capao_news_guide_rating_fields(int $post_id): void
+{
+    ?>
+    <fieldset class="guia-rating-input">
+        <legend>Sua nota <span aria-hidden="true">*</span></legend>
+        <div class="guia-rating-options">
+            <?php for ($i = 1; $i <= 5; $i++) : ?>
+                <label><input type="radio" name="capao_guia_rating" value="<?php echo esc_attr((string) $i); ?>" required>
+                    <span aria-hidden="true"><?php echo esc_html(str_repeat('★', $i)); ?></span>
+                    <span class="guia-sr-only"><?php echo esc_html($i . ($i === 1 ? ' estrela' : ' estrelas')); ?></span>
+                </label>
+            <?php endfor; ?>
+        </div>
+    </fieldset>
+    <?php
+}
+add_action('capao_guia_rating_form', 'capao_news_guide_rating_fields');
+
+function capao_news_guide_comment($comment, array $args, int $depth): void
+{
+    if ((string) $comment->comment_approved !== '1') {
+        return;
+    }
+    $rating = get_comment_meta($comment->comment_ID, 'capao_guia_rating', true);
+    ?>
+    <li id="comment-<?php comment_ID(); ?>" <?php comment_class('guia-comment', $comment); ?>>
+        <article>
+            <header><strong><?php echo esc_html(get_comment_author($comment)); ?></strong>
+                <time datetime="<?php echo esc_attr(get_comment_date('c', $comment)); ?>"><?php echo esc_html(get_comment_date(get_option('date_format'), $comment)); ?></time>
+            </header>
+            <?php if (function_exists('capao_guia_valid_rating') && capao_guia_valid_rating($rating)) : ?>
+                <p class="guia-comment-stars" aria-label="<?php echo esc_attr($rating . ' de 5 estrelas'); ?>"><span aria-hidden="true"><?php echo esc_html(str_repeat('★', (int) $rating) . str_repeat('☆', 5 - (int) $rating)); ?></span></p>
+            <?php endif; ?>
+            <div class="guia-comment-text"><?php comment_text($comment); ?></div>
+        </article>
+    <?php
+    // wp_list_comments closes the list item through its native walker.
+}
+
 function capao_news_menu_fallback(): void
 {
     $categories = [
@@ -173,7 +231,7 @@ function capao_news_menu_fallback(): void
         'Bora Lá?'           => 'bora-la',
         'Capão que eu quero' => 'capao-que-eu-quero',
         'Gente Nossa'        => 'gente-nossa',
-        'Bairros'            => home_url('/bairros/'),
+        'Guia Capão'         => capao_news_guide_category_id() ? get_category_link(capao_news_guide_category_id()) : home_url('/category/guia-capao/'),
     ];
 
     echo '<ul class="site-menu flex flex-wrap items-center justify-center gap-2 lg:gap-3">';
@@ -182,7 +240,7 @@ function capao_news_menu_fallback(): void
         $url = $category ? get_category_link($category->term_id) : $target;
         $current = ($category && is_category($category->term_id))
             || ($target === home_url('/') && is_front_page())
-            || ($target === home_url('/bairros/') && is_page('bairros'));
+            || ($label === 'Guia Capão' && is_category() && capao_news_is_guide_category(get_queried_object()));
 
         printf(
             '<li class="%s"><a class="whitespace-nowrap rounded-full px-4 py-2 transition hover:bg-[#6865a8]/10 hover:text-[#4a154b]" href="%s"%s>%s</a></li>',

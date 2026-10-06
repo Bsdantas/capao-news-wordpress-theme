@@ -49,12 +49,17 @@ get_header();
             </aside>
             <div class="single-content">
                 <?php the_content(); ?>
+                <?php get_template_part('template-parts/guia-practical'); ?>
                 <div class="single-tags">
                     <?php the_tags('<span>' . esc_html__('Tags', 'capao-news') . '</span>', ' ', ''); ?>
                 </div>
             </div>
         </div>
     </article>
+
+    <?php if (function_exists('capao_guia_is_post') && capao_guia_is_post((int) get_the_ID())) : ?>
+        <?php comments_template('/comments-guia.php'); ?>
+    <?php endif; ?>
 
     <?php
     $related_posts = new WP_Query([
