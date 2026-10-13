@@ -7,6 +7,8 @@
 get_header();
 ?>
 
+<?php if (is_category()) : get_template_part('template-parts/editorial-header'); endif; ?>
+
 <?php if (is_home() || is_front_page()) : ?>
     <?php
     $promo_ad = new WP_Query([

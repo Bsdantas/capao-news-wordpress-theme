@@ -299,3 +299,26 @@ function capao_news_about_content(): string
 {
     return '<h2><strong>Jornalismo feito daqui, para quem vive aqui.</strong></h2><p>O Capão News é um veículo de comunicação independente, criado pelo jornalista Nailson Costa para informar quem vive, trabalha e constrói todos os dias o Capão Redondo e a Zona Sul de São Paulo.</p><p>Produzimos jornalismo da ponte pra cá com responsabilidade, linguagem acessível e compromisso com quem vive o território.</p><p>Noticiamos os problemas, cobramos soluções, fiscalizamos o poder público e também mostramos as histórias, os negócios, a cultura e as pessoas que fazem a quebrada acontecer.</p><p>Com mais de 200 mil seguidores nas redes sociais e milhões de visualizações todos os meses, trabalhamos para fortalecer uma comunidade mais informada, crítica e conectada com o próprio lugar onde mora.</p><p>Mas números são apenas parte da nossa história.</p><p>Nossa principal força está na confiança construída com quem está do lado de cá da ponte.</p><p><strong>Capão News. Notícias da Ponte pra Cá.</strong></p>';
 }
+
+
+/** Presentation copy for the menu's editorial category archives and pages. */
+function capao_news_editorial_intro($object): array
+{
+    $editorias = [
+        'da-ponte-pra-ca' => ['title' => 'DA PONTE PRA CÁ', 'description' => 'Notícias sobre o dia a dia da quebrada, infraestrutura e mobilidade.'],
+        'feito-no-capao' => ['title' => 'FEITO NO CAPÃO', 'description' => 'Notícias sobre empreendedorismo e economia local.'],
+        'bora-la' => ['title' => 'BORA LÁ', 'description' => 'Notícias sobre gastronomia, cultura, esporte, lazer e arte.'],
+        'capao-que-eu-quero' => ['title' => 'CAPÃO QUE EU QUERO', 'description' => 'Textos de opinião, cidadania e reivindicações.'],
+        'gente-nossa' => ['title' => 'GENTE NOSSA', 'description' => 'Entrevistas e perfil jornalístico sobre lideranças, professores, artistas e figuras históricas do Capão.'],
+    ];
+    if ($object instanceof WP_Term && $object->taxonomy === 'category') {
+        $slug = $object->slug;
+        $name = $object->name;
+    } elseif ($object instanceof WP_Post && $object->post_type === 'page') {
+        $slug = $object->post_name;
+        $name = $object->post_title;
+    } else {
+        return [];
+    }
+    return $editorias[$slug] ?? $editorias[sanitize_title($name)] ?? [];
+}

@@ -23,7 +23,16 @@
                     <h2><?php esc_html_e('O jornal', 'capao-news'); ?></h2>
                     <a href="<?php echo esc_url(home_url('/quem-somos/')); ?>"><?php esc_html_e('Quem somos', 'capao-news'); ?></a>
                     <a href="<?php echo esc_url(home_url('/nossa-equipe/')); ?>"><?php esc_html_e('Nossa equipe', 'capao-news'); ?></a>
-                    <a href="mailto:<?php echo esc_attr(get_option('admin_email')); ?>"><?php esc_html_e('Entre em contato', 'capao-news'); ?></a>
+                    <a href="mailto:<?php echo esc_attr('contato@capaonews.com'); ?>"><?php esc_html_e('Entre em contato', 'capao-news'); ?></a>
+                    <?php
+                    $privacy_url = get_privacy_policy_url();
+                    if (!$privacy_url) {
+                        $privacy_page = get_post((int) get_option('wp_page_for_privacy_policy'));
+                        $privacy_slug = $privacy_page instanceof WP_Post && $privacy_page->post_name ? $privacy_page->post_name : 'politica-de-privacidade';
+                        $privacy_url = home_url('/' . $privacy_slug . '/');
+                    }
+                    ?>
+                    <a href="<?php echo esc_url($privacy_url); ?>" rel="privacy-policy"><?php esc_html_e('Política de privacidade', 'capao-news'); ?></a>
                 </div>
                 <div class="footer-column footer-column--social">
                     <h2><?php esc_html_e('Redes sociais', 'capao-news'); ?></h2>

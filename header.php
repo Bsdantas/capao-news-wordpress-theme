@@ -34,7 +34,7 @@
                     <span class="brand-capao">CAPÃO</span>
                     <span class="brand-news">news</span>
                 </span>
-                <span class="brand-tagline"><?php esc_html_e('Notícia feita na quebrada', 'capao-news'); ?></span>
+                <span class="brand-tagline"><?php esc_html_e('Notícias da Ponte pra Cá.', 'capao-news'); ?></span>
             </a>
         <?php endif; ?>
         </div>

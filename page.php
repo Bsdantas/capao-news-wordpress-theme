@@ -8,7 +8,12 @@ get_header();
 ?>
 
 <?php while (have_posts()) : the_post(); ?>
-    <?php if (is_page('nossa-equipe')) : ?>
+    <?php if (capao_news_editorial_intro(get_queried_object())) : ?>
+        <article id="page-<?php the_ID(); ?>" <?php post_class('editorial-page'); ?>>
+            <?php get_template_part('template-parts/editorial-header'); ?>
+            <div class="prose prose-lg max-w-none leading-relaxed"><?php the_content(); ?></div>
+        </article>
+    <?php elseif (is_page('nossa-equipe')) : ?>
         <?php
         $team_users = get_users([
             'orderby' => 'display_name',
